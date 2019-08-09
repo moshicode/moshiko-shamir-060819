@@ -18,13 +18,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 forecasts: action.payload
-                // forecasts: action.payload
             }
         case 'FETCH_CURRENT_WEATHER':
             return {
                 ...state,
                 currentWeather: action.payload
-                // currentWeather: action.payload
             }
         default:
             return state
