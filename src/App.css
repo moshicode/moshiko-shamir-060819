@@ -1,5 +1,4 @@
-// AutoComplete
-
+/*
 .autocomplete {
     width: 100%;
     border: 1px solid #eee;
@@ -7,7 +6,6 @@
 
 .autocomplete input {
     width: 100%;
-    /* border: none; */
     box-sizing: border-box;
     padding: 10px 5px;
     outline: none;
@@ -42,3 +40,5 @@
     text-decoration: underline;
     background-color: #ccc;
 }
+
+*/

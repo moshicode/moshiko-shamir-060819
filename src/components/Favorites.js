@@ -8,12 +8,14 @@ function Favorites() {
     const dispatch = useDispatch()
     return (
         <div className="favorites">
-            {favorites.map((favorite, index) =>
-                <div key={index}>
-                    {favorite.name}
-                    <button onClick={() => dispatch(removeFavorite(favorite.id))}>Remove Favorite</button>
-                </div>
-            )}
+            <div className="container">
+                {favorites.map((favorite, index) =>
+                    <div key={index}>
+                        {favorite.name}
+                        <button onClick={() => dispatch(removeFavorite(favorite.id))}>Remove Favorite</button>
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

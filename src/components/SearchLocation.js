@@ -31,11 +31,11 @@ const SearchLocation = () => {
     }
 
     return (
-        <div className="search">
+        <div className="hero__input search">
             <input
                 className="search__input"
                 type="text"
-                placeholder="search location"
+                placeholder="Search By City..."
                 onChange={onChange}
                 value={text}
                 onKeyPress={handleKeyPress}
@@ -44,7 +44,9 @@ const SearchLocation = () => {
                 className="search__btn"
                 onClick={onSubmit}
                 onKeyPress={handleKeyPress}
-            >Search</button>
+            >
+                <i class="fas fa-search"></i>
+            </button>
         </div>
     )
 

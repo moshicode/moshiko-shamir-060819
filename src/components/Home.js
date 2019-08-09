@@ -2,6 +2,8 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { increment, decrement, addFavorite, removeFavorite } from '../actions'
 import SearchLocation from './SearchLocation'
+import WeatherList from './WeatherList'
+import Hero from './Hero'
 
 // import SearchInput from './SearchInput'
 
@@ -13,8 +15,13 @@ const Home = () => {
 
     return (
         <div className="home" >
-            <SearchLocation />
-            {/* <SearchInput /> */}
+            <Hero />
+
+
+            {/* <SearchLocation /> */}
+            <WeatherList />
+
+            {/* <SearchInput />
             <h1>Homepage</h1>
             <p>Counter {counter}</p>
 
@@ -22,8 +29,8 @@ const Home = () => {
             <button onClick={() => dispatch(addFavorite(5, 'Moshiko'))}>Add Favorite</button>
             <button onClick={() => dispatch(increment())}>+5</button>
             <button onClick={() => dispatch(increment())}>+1</button>
-            <button onClick={() => dispatch(decrement())}>-1</button>
-        </div >
+            <button onClick={() => dispatch(decrement())}>-1</button> */}
+        </div>
     )
 }
 

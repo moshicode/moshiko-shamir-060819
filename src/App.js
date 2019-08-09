@@ -1,21 +1,20 @@
 import React from 'react';
 import './App.css';
+import './styles/style.css'
 import Home from './components/Home'
-import Navbar from './components/Navbar'
+import Header from './components/Header'
 import Favorites from './components/Favorites'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Navbar />
-        <Switch>
-          <Route path='/' exact component={Home} />
-          <Route path='/favorites' component={Favorites} />
-        </Switch>
-      </div>
-    </Router>
+    <div className="App">
+      <Header />
+      <Switch>
+        <Route path='/' exact component={Home} />
+        <Route path='/favorites' component={Favorites} />
+      </Switch>
+    </div>
   );
 }
 

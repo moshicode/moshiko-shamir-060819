@@ -41,11 +41,31 @@ export const getDailyForecasts = locationKey => {
 
 export const getCurrentWeather = locationKey => {
     return (dispatch) => {
-        axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${API_KEY}`)
+        axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${API_KEY}&getphotos=true`)
             .then(res => {
+                console.log(res)
+                let filterRes = { ...res.data[0] }
+                console.log(filterRes)
+                // let data = {
+                //     IsDayTime: filterRes.IsDayTime,
+                //     LocalObservationDateTime: filterRes.LocalObservationDateTime,
+                //     Photos: filterRes.Photos[0].LandscapeLink,
+                //     Temperature: filterRes.Temperature,
+                //     WeatherIcon: filterRes.WeatherIcon,
+                //     WeatherText: filterRes.WeatherText
+                // }
+                let { IsDayTime, LocalObservationDateTime, Photos, Temperature, WeatherIcon, WeatherText } = filterRes
+
                 dispatch({
                     type: 'FETCH_CURRENT_WEATHER',
-                    payload: res.data[0]
+                    payload: {
+                        IsDayTime,
+                        LocalObservationDateTime,
+                        Photos,
+                        Temperature,
+                        WeatherIcon,
+                        WeatherText
+                    }
                 })
             }).catch(err => {
                 console.log(err);
