@@ -24,9 +24,10 @@ const SearchLocation = () => {
         }
     }
 
-    const handleKeyPress = (e) => {
+    const handleKeyPress = async (e) => {
         if (e.charCode === 13 || e.key === 'Enter') {
-            onSubmit()
+            await onSubmit()
+            await e.target.blur()
         }
     }
 

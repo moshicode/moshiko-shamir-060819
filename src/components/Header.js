@@ -21,7 +21,7 @@ const Header = () => {
                             </Link>
                         </li>
                         <li>
-                            <button onClick={(e) => dispatch(toggleDarkMode())(e.target.blur())}><i className="fas fa-adjust"></i></button>
+                            <button onClick={(e) => dispatch(toggleDarkMode())}><i className="fas fa-adjust"></i></button>
                         </li>
                     </ul>
                 </nav>
