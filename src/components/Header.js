@@ -6,6 +6,7 @@ import { toggleDarkMode } from '../actions'
 
 const Header = () => {
     const dispatch = useDispatch()
+
     return (
         <header className="header">
             <div className="container">
@@ -20,7 +21,7 @@ const Header = () => {
                             </Link>
                         </li>
                         <li>
-                            <button onClick={() => dispatch(toggleDarkMode())}><i className="fas fa-adjust"></i></button>
+                            <button onClick={(e) => dispatch(toggleDarkMode())(e.target.blur)}><i className="fas fa-adjust"></i></button>
                         </li>
                     </ul>
                 </nav>
