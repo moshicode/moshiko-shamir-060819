@@ -6,13 +6,15 @@ import { useSelector } from 'react-redux'
 
 const Hero = () => {
     const currentWeather = useSelector(state => state.weatherData.currentWeather)
-    console.log(currentWeather)
+    const isDarkMode = useSelector(state => state.isDark)
+    console.log(isDarkMode)
+
+    const HeroStyle = `linear-gradient(rgba(245, 177, 83, 0.75), ${isDarkMode ? '#000718' : '#fff'}), url(${currentWeather.Photos})`
+    console.log(HeroStyle)
     return (
-        <div className="hero" style={{ backgroundImage: `linear-gradient(rgba(245, 177, 83, 0.75), #fff), url(${currentWeather.Photos})` }} >
-            <div className="hero__search">
-                <SearchLocation />
-            </div>
-        </div >
+        <div className="hero" style={{ backgroundImage: HeroStyle }} >
+            <SearchLocation />
+        </div>
     )
 }
 

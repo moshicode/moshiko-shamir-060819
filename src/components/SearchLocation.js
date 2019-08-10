@@ -31,7 +31,7 @@ const SearchLocation = () => {
     }
 
     return (
-        <div className="hero__input search">
+        <div className="hero__search search">
             <input
                 className="search__input"
                 type="text"

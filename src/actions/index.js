@@ -30,6 +30,12 @@ export const convertTempUnits = () => {
     }
 }
 
+export const toggleDarkMode = () => {
+    return {
+        type: 'SET_DARK_MODE'
+    }
+}
+
 export const removeFavorite = id => {
     return {
         type: 'REMOVE_FAVORITE',

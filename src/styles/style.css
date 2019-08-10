@@ -69,7 +69,9 @@ a {
   font-size: inherit;
 }
 html,
-body {
+body,
+#root,
+.app {
   height: 100%;
 }
 html {
@@ -78,6 +80,10 @@ html {
 body {
   font-family: "Open Sans", sans-serif;
   font-size: 1.6rem;
+}
+.dark {
+  background-color: #000718;
+  color: #fff;
 }
 .container {
   max-width: 117rem;
@@ -100,6 +106,14 @@ body {
 .header__logo {
   font-weight: 600;
   font-size: 2.4rem;
+}
+.header__list {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+}
+.header__list li {
+  margin-left: 1.6rem;
 }
 .hero {
   background-image: linear-gradient(rgba(245, 177, 83, 0.75), #fff), url(../images/background-image.jpg);
@@ -125,11 +139,17 @@ body {
   border-radius: 10rem;
   font-size: inherit;
   width: 400px;
+  text-transform: capitalize;
+  transition: all 0.3s;
 }
 @media (max-width: 480px) {
   .hero .search__input {
     width: 240px;
   }
+}
+.hero .search__input:focus {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.6s;
 }
 .hero .search__btn {
   position: absolute;
@@ -140,6 +160,7 @@ body {
 .weather-forecast__list {
   display: flex;
   justify-content: space-between;
+  padding: 1.6rem 0 3.2rem;
 }
 .weather-forecast__item {
   text-align: center;

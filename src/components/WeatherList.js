@@ -17,7 +17,7 @@ function WeatherList() {
                 <div className="weather-forecast__current">
                     <p className="weather-forecast__day">Today</p>
                     <p className="weather-forecast__text">{currentWeather.WeatherText}</p>
-                    <p className="weather-forecast__temp">{currentWeather.Temperature[isMetric ? 'Metric' : 'Imperial'].Value}{isMetric ? 'C' : 'F'}</p>
+                    <p className="weather-forecast__temp">{currentWeather.Temperature[isMetric ? 'Metric' : 'Imperial'].Value}{isMetric ? `°C` : '°F'}</p>
                 </div>
 
             </div>
