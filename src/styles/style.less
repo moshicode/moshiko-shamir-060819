@@ -198,11 +198,16 @@ body {
   align-items: center;
 
   &__title {
-    font-size: 3.6rem;
-    border-left: 3px solid;
-    line-height: 3.6rem;
-    padding-left: 1rem;
+    font-size: 6.4rem;
+  }
 
+  &__today {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: -50px;
   }
 }
 
@@ -228,4 +233,25 @@ body {
   .weather-forecast__item>p {
     flex: 1;
   }
+}
+
+// .weather-current__today {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   position: relative;
+//   top: -50px;
+// }
+
+
+// .weather-current__title {
+//   font-size: 6.4rem;
+// }
+
+
+.weather-forecast__current {
+  width: 300px;
+  display: flex;
+  justify-content: space-evenly;
 }

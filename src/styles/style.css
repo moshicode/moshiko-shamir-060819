@@ -158,10 +158,15 @@ body {
   align-items: center;
 }
 .weather-current__title {
-  font-size: 3.6rem;
-  border-left: 3px solid;
-  line-height: 3.6rem;
-  padding-left: 1rem;
+  font-size: 6.4rem;
+}
+.weather-current__today {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: -50px;
 }
 @media (max-width: 480px) {
   .weather-forecast__item {
@@ -181,4 +186,9 @@ body {
   .weather-forecast__item > p {
     flex: 1;
   }
+}
+.weather-forecast__current {
+  width: 300px;
+  display: flex;
+  justify-content: space-evenly;
 }

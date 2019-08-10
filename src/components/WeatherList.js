@@ -12,21 +12,19 @@ function WeatherList() {
 
     return (
         <div className="weather-forecast container">
-            <div className="weather-current">
-                <div className="weather-current__today">
-                    <h2 className="weather-current__title">{location.LocalizedName}</h2>
-                    <div className="weather-forecast__current">
-                        <p className="weather-forecast__day">Today</p>
-                        <p className="weather-forecast__text">{currentWeather.WeatherText}</p>
-                        <p className="weather-forecast__temp">{currentWeather.Temperature[isMetric ? 'Metric' : 'Imperial'].Value}{isMetric ? 'C' : 'F'}</p>
-                    </div>
-
+            <div className="weather-current__today">
+                <h2 className="weather-current__title">{location.LocalizedName}</h2>
+                <div className="weather-forecast__current">
+                    <p className="weather-forecast__day">Today</p>
+                    <p className="weather-forecast__text">{currentWeather.WeatherText}</p>
+                    <p className="weather-forecast__temp">{currentWeather.Temperature[isMetric ? 'Metric' : 'Imperial'].Value}{isMetric ? 'C' : 'F'}</p>
                 </div>
-                {/* <button
+
+            </div>
+            {/* <button
                     onClick={() => localStorage.setItem('favorites', JSON.stringify(location))}>
                     Add to Favorite
                 </button> */}
-            </div>
             <div className="weather-forecast__list">
 
                 {dailyForecasts.map((forecast, index) =>
