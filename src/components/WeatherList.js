@@ -7,7 +7,6 @@ function WeatherList() {
     const currentWeather = useSelector(state => state.weatherData.currentWeather)
     const location = useSelector(state => state.weatherData.location)
 
-
     return (
         <div className="weather-forecast container">
             <div className="weather-current">
