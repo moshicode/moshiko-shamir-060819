@@ -5,7 +5,7 @@ const API_KEY = '9oUg1Ge7VpIOYzZbin0yfApxj8ASG8dN'
 
 export const getLocationKey = cityName => {
     return (dispatch) => {
-        axios.get(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?q=${cityName}&apikey=${API_KEY}`)
+        axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?q=${cityName}&apikey=${API_KEY}`)
             .then(res => {
                 let filterRes = { ...res.data[0] }
                 let { Key, LocalizedName } = filterRes
