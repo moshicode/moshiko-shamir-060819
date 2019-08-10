@@ -12,7 +12,7 @@ const Header = () =>
                 <ul className="header__list">
                     <li>
                         <Link to="/favorites">
-                            <i class="fas fa-heart"></i>
+                            <i className="fas fa-heart"></i>
                         </Link>
                     </li>
                 </ul>

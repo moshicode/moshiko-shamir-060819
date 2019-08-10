@@ -45,7 +45,7 @@ const SearchLocation = () => {
                 onClick={onSubmit}
                 onKeyPress={handleKeyPress}
             >
-                <i class="fas fa-search"></i>
+                <i className="fas fa-search"></i>
             </button>
         </div>
     )

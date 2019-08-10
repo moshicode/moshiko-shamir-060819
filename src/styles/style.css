@@ -86,7 +86,7 @@ body {
 }
 .header {
   background-color: transparent;
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   left: 0;
@@ -103,9 +103,9 @@ body {
 }
 .hero {
   background-image: linear-gradient(rgba(245, 177, 83, 0.75), #fff), url(../images/background-image.jpg);
-  background-position: center right;
+  background-position: bottom center;
   background-size: cover;
-  height: 40vh;
+  height: 65vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -116,7 +116,7 @@ body {
 .hero .search__input {
   border: none;
   padding: 0.8rem 1.6rem;
-  line-height: 2.4rem;
+  line-height: 3.6rem;
   border-radius: 10rem;
   font-size: inherit;
   width: 400px;
@@ -127,12 +127,31 @@ body {
   bottom: 0;
   top: 0;
 }
-.weather-forecast {
-  position: relative;
-  top: -16px;
-  background-color: #fff;
-}
 .weather-forecast__list {
+  display: grid;
+  grid-template-columns: 2fr repeat(5, 1fr);
+  align-items: center;
+  grid-gap: 1.6rem;
+}
+.weather-forecast__item {
+  text-align: center;
+  padding: 1rem;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 1.6rem;
+  flex-basis: 10%;
+}
+.weather-forecast__day {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.weather-current {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+.weather-current__title {
+  font-size: 3.6rem;
+  border-left: 3px solid;
+  line-height: 3.6rem;
+  padding-left: 1rem;
 }
