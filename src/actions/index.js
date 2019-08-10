@@ -24,6 +24,12 @@ export const addFavorite = (id, name) => {
     }
 }
 
+export const convertTempUnits = () => {
+    return {
+        type: 'CONVERT_TEMPERATURE_UNITS'
+    }
+}
+
 export const removeFavorite = id => {
     return {
         type: 'REMOVE_FAVORITE',

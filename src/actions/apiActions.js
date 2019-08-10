@@ -1,6 +1,7 @@
 import axios from 'axios'
 import image from '../images/background-image.jpg'
 
+
 const API_KEY = '9oUg1Ge7VpIOYzZbin0yfApxj8ASG8dN'
 
 export const getLocationKey = cityName => {
@@ -28,8 +29,10 @@ export const getLocationKey = cityName => {
 
 export const getDailyForecasts = locationKey => {
     return (dispatch) => {
-        axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=${API_KEY}`)
+        axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=${API_KEY}&metric=true`)
             .then(res => {
+                console.log(res)
+                console.log(res.data.DailyForecasts)
                 dispatch({
                     type: 'FETCH_FORECASTS',
                     payload: res.data.DailyForecasts

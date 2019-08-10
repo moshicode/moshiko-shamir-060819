@@ -14,7 +14,7 @@ const Home = () => {
     console.log(useSelector(state => state))
 
     return (
-        <div className="home" >
+        <React.Fragment>
             <Hero />
 
 
@@ -30,7 +30,7 @@ const Home = () => {
             <button onClick={() => dispatch(increment())}>+5</button>
             <button onClick={() => dispatch(increment())}>+1</button>
             <button onClick={() => dispatch(decrement())}>-1</button> */}
-        </div>
+        </React.Fragment>
     )
 }
 

@@ -6,3 +6,5 @@ const celsiusReducer = (state = true, action) => {
             return state
     }
 }
+
+export default celsiusReducer
