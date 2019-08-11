@@ -3,24 +3,14 @@ import ReactDOM from 'react-dom';
 import App from './App';
 
 import { HashRouter as Router } from "react-router-dom";
-
-import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware, compose } from 'redux';
-import rootReducers from './reducers'
+import store from './store'
+import { saveState } from './helpers/localStorage'
 
-// const middleware = applyMiddleware(thunk)
 
-// const store = createStore(
-//     rootReducers,
-//     middleware,
-//     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-// )
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(rootReducers, composeEnhancers(
-    applyMiddleware(thunk)
-));
+store.subscribe(() => {
+    saveState(store.getState().favoritesData)
+})
 
 ReactDOM.render(
     <Provider store={store}>
@@ -28,6 +18,7 @@ ReactDOM.render(
             <App />
         </Router>
     </Provider>,
-    document.getElementById('root'));
+    document.getElementById('root')
+);
 
 

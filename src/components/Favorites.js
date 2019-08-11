@@ -12,7 +12,10 @@ function Favorites() {
                 {favorites.map((favorite, index) =>
                     <div key={index}>
                         {favorite.name}
-                        <button onClick={() => dispatch(removeFavorite(favorite.id))}>Remove Favorite</button>
+                        <button
+                            onClick={() => dispatch(removeFavorite(favorite.id))}>
+                            Remove Favorite
+                        </button>
                     </div>
                 )}
             </div>

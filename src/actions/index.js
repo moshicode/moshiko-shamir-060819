@@ -1,5 +1,7 @@
 import axios from 'axios'
 import { getLocationKey } from './apiActions'
+import { saveState } from '../helpers/localStorage'
+import store from '../store';
 
 export const increment = (number) => {
     return {
@@ -15,13 +17,30 @@ export const decrement = () => {
 }
 
 export const addFavorite = (id, name) => {
-    return {
-        type: 'ADD_FAVORITE',
-        payload: {
-            id: id,
-            name: name
-        }
+    console.log(store)
+    return (dispatch, getState) => {
+        const state = getState()
+        dispatch({
+            type: 'ADD_FAVORITE',
+            payload: {
+                id: id,
+                name: name
+            }
+        })
+        console.log(store)
+        console.log(state.favoritesData)
+        // saveState(state.favoritesData)
+
+        console.log('its work')
+        console.log(state.favoritesData)
     }
+    // return {
+    //     type: 'ADD_FAVORITE',
+    //     payload: {
+    //         id: id,
+    //         name: name
+    //     }
+    // }
 }
 
 export const convertTempUnits = () => {

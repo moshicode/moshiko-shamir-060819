@@ -2,12 +2,16 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import moment from 'moment'
 
+import localStorageHelper from '../helpers/localStorage'
+import { addFavorite } from '../actions'
+
 function WeatherList() {
     const dailyForecasts = useSelector(state => state.weatherData.forecasts)
     const currentWeather = useSelector(state => state.weatherData.currentWeather)
     const location = useSelector(state => state.weatherData.location)
     const isMetric = useSelector(state => state.isCelsius)
     const isDayTime = currentWeather.isDayTime ? 'Day' : 'Night'
+    const dispatch = useDispatch()
 
     return (
         <div className="weather-forecast container">
@@ -24,6 +28,10 @@ function WeatherList() {
                     onClick={() => localStorage.setItem('favorites', JSON.stringify(location))}>
                     Add to Favorite
                 </button> */}
+            <button
+                onClick={() => dispatch(addFavorite(location.Key, location.LocalizedName))}>
+                Add to Favorite
+                </button>
             <div className="weather-forecast__list">
                 {dailyForecasts.map((forecast, index) =>
                     <div key={index} className="weather-forecast__item">

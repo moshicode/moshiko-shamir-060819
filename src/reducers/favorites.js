@@ -1,16 +1,7 @@
-const intialState = [
-    {
-        id: 1,
-        name: 'Tel Aviv',
-        currentTemp: 32
-    },
-    {
-        id: 2,
-        name: 'Jerusalem',
-        currentTemp: 24
-    }
-]
+import { loadState } from '../helpers/localStorage'
 
+const intialState = loadState()
+console.log(intialState)
 
 const favoritesReducer = (state = intialState, action) => {
     switch (action.type) {

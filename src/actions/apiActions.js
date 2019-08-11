@@ -2,10 +2,11 @@ import axios from 'axios'
 import image from '../images/background-image.jpg'
 
 const API_KEY = '4gI1E7FpGxu7NOag9KZisGMhA1e54aoL'
+const ROOT_URL = 'https://dataservice.accuweather.com'
 
 export const getLocationKey = cityName => {
     return (dispatch) => {
-        axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?q=${cityName}&apikey=${API_KEY}`)
+        axios.get(`${ROOT_URL}/locations/v1/cities/autocomplete?q=${cityName}&apikey=${API_KEY}`)
             .then(res => {
                 let filterRes = { ...res.data[0] }
                 let { Key, LocalizedName } = filterRes
@@ -28,7 +29,7 @@ export const getLocationKey = cityName => {
 
 export const getDailyForecasts = locationKey => {
     return (dispatch) => {
-        axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=${API_KEY}&metric=true`)
+        axios.get(`${ROOT_URL}/forecasts/v1/daily/5day/${locationKey}?apikey=${API_KEY}&metric=true`)
             .then(res => {
                 console.log(res)
                 console.log(res.data.DailyForecasts)
@@ -44,7 +45,7 @@ export const getDailyForecasts = locationKey => {
 
 export const getCurrentWeather = locationKey => {
     return (dispatch) => {
-        axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${API_KEY}&getphotos=true`)
+        axios.get(`${ROOT_URL}/currentconditions/v1/${locationKey}?apikey=${API_KEY}&getphotos=true`)
             .then(res => {
                 let filterRes = { ...res.data[0] }
                 let { IsDayTime, LocalObservationDateTime, Photos = { image }, Temperature, WeatherIcon, WeatherText } = filterRes

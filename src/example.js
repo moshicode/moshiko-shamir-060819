@@ -1,4 +1,3 @@
-favrites: [] = [{ id: "134", name: "paris" }, { id: "13234", name: "TLV" }];
 
 // On load favorite page rise Action called GetCurrentWeather data payload(favorites)
 //Api call foreach fav in favorites and get the current wheater
