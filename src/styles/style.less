@@ -202,6 +202,12 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 1.6rem 0 3.2rem;
+
+
+    @media(max-width: 480px) {
+      display: flex;
+      flex-flow: column;
+    }
   }
 
   &__item {
@@ -210,11 +216,36 @@ body {
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
     border-radius: 1.6rem;
     flex-basis: 15%;
+
+    @media (max-width: 480px) {
+      text-align: center;
+      padding: 1rem 0;
+      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
+      border-radius: 1.6rem;
+      display: flex;
+      margin-bottom: 1.6rem;
+      flex-basis: 30px;
+      align-items: center;
+
+      :nth-child(n+3) {
+        flex-grow: 1;
+      }
+
+      >p {
+        flex-basis: 50px;
+      }
+    }
   }
 
   &__day {
     font-weight: 600;
     text-transform: uppercase;
+  }
+
+  &__current {
+    width: 300px;
+    display: flex;
+    justify-content: space-evenly;
   }
 }
 
@@ -237,52 +268,6 @@ body {
     top: -50px;
   }
 }
-
-
-@media (max-width: 480px) {
-  .weather-forecast__item {
-    text-align: center;
-    padding: 1rem;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
-    border-radius: 1.6rem;
-    display: flex;
-    margin-bottom: 1.6rem;
-    flex-basis: 30px;
-    align-items: center;
-  }
-
-
-  .weather-forecast__list {
-    display: flex;
-    flex-flow: column;
-  }
-
-  .weather-forecast__item>p {
-    flex: 1;
-  }
-}
-
-// .weather-current__today {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   position: relative;
-//   top: -50px;
-// }
-
-
-// .weather-current__title {
-//   font-size: 6.4rem;
-// }
-
-
-.weather-forecast__current {
-  width: 300px;
-  display: flex;
-  justify-content: space-evenly;
-}
-
 
 //  ICONS
 

@@ -17,7 +17,7 @@ function WeatherList() {
                 <div className="weather-forecast__current">
                     <p className="weather-forecast__day">Today</p>
                     <p className="weather-forecast__text">{currentWeather.WeatherText}</p>
-                    <p className="weather-forecast__temp">{currentWeather.Temperature[isMetric ? 'Metric' : 'Imperial'].Value}{isMetric ? `°C` : '°F'}</p>
+                    <p className="weather-forecast__temp">{currentWeather.Temperature[isMetric ? 'Metric' : 'Imperial'].Value}{isMetric ? `℃` : '℉'}</p>
                 </div>
 
             </div>
@@ -30,8 +30,8 @@ function WeatherList() {
                 {dailyForecasts.map((forecast, index) =>
                     <div key={index} className="weather-forecast__item">
                         <p className="weather-forecast__day">{moment(forecast.Date).format('ddd')}</p>
-                        <p><i class={`wi icon-accu${forecast[isDayTime].Icon}`}></i></p>
-                        <p className="weather-forecast__temp">{forecast.Temperature.Minimum.Value} - {forecast.Temperature.Maximum.Value}</p>
+                        <p><i className={`wi icon-accu${forecast[isDayTime].Icon}`}></i></p>
+                        <p className="weather-forecast__temp">{forecast.Temperature.Minimum.Value}℃ - {forecast.Temperature.Maximum.Value}℃</p>
                         <p className="weather__forecast__text">{forecast[isDayTime].IconPhrase}</p>
                     </div>
                 )}
