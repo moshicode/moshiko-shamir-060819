@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import moment from 'moment'
 
 import localStorageHelper from '../helpers/localStorage'
-import { addFavorite } from '../actions'
+import { addFavorite, removeFavorite } from '../actions'
 
 function WeatherList() {
     const dailyForecasts = useSelector(state => state.weatherData.forecasts)
@@ -12,7 +12,28 @@ function WeatherList() {
     const isMetric = useSelector(state => state.isCelsius)
     const isDayTime = currentWeather.isDayTime ? 'Day' : 'Night'
     const dispatch = useDispatch()
+    const favorites = useSelector(state => state.favoritesData)
 
+
+    // const checkFavoriteExcists = (locationKey) => {
+    //     console.log(locationKey)
+    //     if (favorites.length > 0) {
+    //         console.log(true)
+    //     }
+    //     console.log(false)
+    //     return false
+    //     // favorites.forEach(favorite => {
+    //     //     console.log(favorite.id + ' ' + locationKey)
+    //     //     if (favorite.id == locationKey ) {
+    //     //         console.log(true)
+    //     //         return true
+    //     //     } else {
+    //     //         return false
+    //     //     }
+    //     // })
+    // }
+
+    // checkFavoriteExcists(215854)
     return (
         <div className="weather-forecast container">
             <div className="weather-current__today">
@@ -22,16 +43,21 @@ function WeatherList() {
                     <p className="weather-forecast__text">{currentWeather.WeatherText}</p>
                     <p className="weather-forecast__temp">{currentWeather.Temperature[isMetric ? 'Metric' : 'Imperial'].Value}{isMetric ? `℃` : '℉'}</p>
                 </div>
+                <button
+                    className="weather-current__btn"
+                    onClick={() => dispatch(
+                        addFavorite(location.Key, location.LocalizedName)
+                    )}>Add to Favorite</button>
 
             </div>
             {/* <button
                     onClick={() => localStorage.setItem('favorites', JSON.stringify(location))}>
                     Add to Favorite
                 </button> */}
-            <button
-                onClick={() => dispatch(addFavorite(location.Key, location.LocalizedName))}>
-                Add to Favorite
-                </button>
+
+
+            {/* <button onClick={() => dispatch(removeFavorite(location.Key, location.LocalizedName))}>Remove Favorite</button> */}
+
             <div className="weather-forecast__list">
                 {dailyForecasts.map((forecast, index) =>
                     <div key={index} className="weather-forecast__item">

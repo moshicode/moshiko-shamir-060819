@@ -223,6 +223,16 @@ body {
   position: relative;
   top: -50px;
 }
+.weather-current__btn {
+  border: 1px solid;
+  border-radius: 2rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 1.4rem;
+  margin: 1rem;
+}
+.favorites {
+  padding-top: 8rem;
+}
 .icon-accu1:before {
   content: "\f00d";
 }

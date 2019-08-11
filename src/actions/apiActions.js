@@ -1,7 +1,7 @@
 import axios from 'axios'
 import image from '../images/background-image.jpg'
 
-const API_KEY = '4gI1E7FpGxu7NOag9KZisGMhA1e54aoL'
+const API_KEY = 'dWD7IznmsGfuKaKFufT5l9vOGUgNiiQG'
 const ROOT_URL = 'https://dataservice.accuweather.com'
 
 export const getLocationKey = cityName => {
