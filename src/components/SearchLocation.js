@@ -24,10 +24,11 @@ const SearchLocation = () => {
         }
     }
 
-    const handleKeyPress = async (e) => {
+    const handleKeyPress = (e) => {
         if (e.charCode === 13 || e.key === 'Enter') {
-            await onSubmit()
-            await e.target.blur()
+            e.preventDefault()
+            e.target.blur()
+            onSubmit()
         }
     }
 
