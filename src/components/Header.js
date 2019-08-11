@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { toggleDarkMode } from '../actions'
 
-
 const Header = () => {
     const dispatch = useDispatch()
 

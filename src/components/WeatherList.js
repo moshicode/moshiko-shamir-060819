@@ -7,7 +7,6 @@ function WeatherList() {
     const currentWeather = useSelector(state => state.weatherData.currentWeather)
     const location = useSelector(state => state.weatherData.location)
     const isMetric = useSelector(state => state.isCelsius)
-
     const isDayTime = currentWeather.isDayTime ? 'Day' : 'Night'
 
     return (
@@ -26,17 +25,16 @@ function WeatherList() {
                     Add to Favorite
                 </button> */}
             <div className="weather-forecast__list">
-
                 {dailyForecasts.map((forecast, index) =>
                     <div key={index} className="weather-forecast__item">
                         <p className="weather-forecast__day">{moment(forecast.Date).format('ddd')}</p>
-                        <p><i className={`wi icon-accu${forecast[isDayTime].Icon}`}></i></p>
+                        <p className="weather-forecast__icon"><i className={`wi icon-accu${forecast[isDayTime].Icon}`}></i></p>
                         <p className="weather-forecast__temp">{forecast.Temperature.Minimum.Value}℃ - {forecast.Temperature.Maximum.Value}℃</p>
                         <p className="weather__forecast__text">{forecast[isDayTime].IconPhrase}</p>
                     </div>
                 )}
             </div>
-        </div >
+        </div>
     );
 }
 

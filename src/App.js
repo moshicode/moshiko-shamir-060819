@@ -7,13 +7,10 @@ import Favorites from './components/Favorites'
 import { Switch, Route } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-
-
 function App() {
   const isDarkMode = useSelector(state => state.isDark)
   return (
     <div className={isDarkMode ? 'app dark' : 'app'}>
-
       <Header />
       <Switch>
         <Route path='/' exact component={Home} />

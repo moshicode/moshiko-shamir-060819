@@ -1,7 +1,6 @@
 import axios from 'axios'
 import image from '../images/background-image.jpg'
 
-
 const API_KEY = '4gI1E7FpGxu7NOag9KZisGMhA1e54aoL'
 
 export const getLocationKey = cityName => {
