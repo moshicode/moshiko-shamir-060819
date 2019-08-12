@@ -1,123 +1,84 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
-// import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { getSuggestions, resetSuggestions, getLocation, getWeather, getAllWeather } from '../actions/weatherActions'
+import { useSelector, useDispatch } from 'react-redux'
 
+const SearchInput = () => {
+    const location = useSelector(state => state.suggestions)
+    const dispatch = useDispatch()
 
-// import { useSelector, useDispatch } from 'react-redux'
-// import { fetchLocation } from '../actions'
+    const [state, setState] = useState({ text: '', suggestionSelected: '' });
 
-// const SearchInput = () => {
-//     const location = useSelector(state => state.location)
-//     const dispatch = useDispatch()
-
-
-//     const [state, setState] = useState({ text: '' });
-
-//     const onChange = async e => {
-//         setState({ text: e.target.value })
-//         console.log(state)
-//         // await dispatch(fetchLocation(state.text))
-//     }
-
-//     console.log(location)
-//     return (
-//         <div>
-//             <input
-//                 type="text"
-//                 placeholder="Search City"
-//                 onChange={async (e) => await dispatch(fetchLocation(e.target.value))}
-//             />
-//             <button onClick={async () => await dispatch(fetchLocation(state.text))}>Fetch API</button>
-//         </div>
-//     )
-// }
-
-// export default SearchInput
-
-export default class SearchInput extends Component {
-    constructor(props) {
-        super(props)
-        this.items = [
-            {
-                locationkey: '132',
-                name: 'Tel Aviv'
-            },
-            {
-                locationkey: '140',
-                name: 'Jerusalem'
-            }
-        ]
-
-        this.state = {
-            items: [],
-            suggestions: [],
-            text: '',
-            selected: null
-
-        }
-    }
-
-    onChange = async (e) => {
+    const handleChange = e => {
         const value = e.target.value
-        let suggestions = []
+        setState({ text: value })
         if (value.length > 0) {
-            await axios.get("http://dataservice.accuweather.com/locations/v1/cities/autocomplete", {
-                params: {
-                    apikey: '4gI1E7FpGxu7NOag9KZisGMhA1e54aoL',
-                    q: value
-                }
-            }).then(response => {
-                this.setState({ items: response.data })
-            })
-            const regex = await new RegExp(`^${value}`, 'i')
-            suggestions = await this.state.items.filter(v => regex.test(v.LocalizedName))
+            dispatch(getSuggestions(value))
         }
-
-        this.setState({
-            suggestions,
-            text: value
-        })
     }
 
-    suggestionSelected = value => {
-        this.setState({
-            text: value.LocalizedName,
-            selected: value.Key,
-            suggestions: []
-        })
+    const handleKeyPress = (e) => {
+        if (e.charCode === 13 || e.key === 'Enter') {
+            e.preventDefault()
+            // e.target.blur() ! to check if work on mobile for android keyboards
+            handleSubmit()
+        }
     }
 
-    renderSuggestions = () => {
-        const { suggestions } = this.state
-        if (suggestions.length === 0) {
+    const handleSubmit = e => {
+        const cityName = state.text
+        if (state.text === state.suggestionSelected) {
+            dispatch(getLocation(cityName))
+        } else {
+            console.log(false)
+        }
+        setState({ text: '' })
+        dispatch(resetSuggestions())
+    }
+
+    const suggestionSelected = item => {
+        setState({ text: item, suggestionSelected: item })
+        dispatch(resetSuggestions())
+    }
+
+    const renderSuggestions = () => {
+        if (location.length === 0) {
             return null
         }
+
         return (
-            <ul>
-                {suggestions.map((item, index) =>
+            <ul className="search__results">
+                {location.map((item, index) =>
                     <li
                         key={index}
-                        onClick={() => this.suggestionSelected(item)}
-                    >{item.LocalizedName}
-                    </li>
-                )}
+                        onClick={() => suggestionSelected(item)}
+                    >{item}
+                    </li>)
+                }
             </ul>
         )
     }
 
-    render() {
-        return (
-            <div className="autocomplete-wrapper">
-                <div className="autocomplete">
-                    <input
-                        type="text"
-                        placeholder="Write Location"
-                        value={this.state.text}
-                        onChange={this.onChange}
-                    />
-                    {this.renderSuggestions()}
-                </div>
-            </div>
-        )
-    }
+    return (
+        <div className="hero__search search">
+            <input
+                className="search__input"
+                type="text"
+                placeholder="Search By City..."
+                onChange={handleChange}
+                value={state.text}
+                onKeyPress={handleKeyPress}
+            />
+            <button
+                className="search__btn"
+                onClick={(e) => handleSubmit()}
+                onKeyPress={handleKeyPress}
+            >
+                <i className="fas fa-search"></i>
+            </button>
+            {renderSuggestions()}
+        </div>
+    )
 }
+
+export default SearchInput

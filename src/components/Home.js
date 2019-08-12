@@ -1,11 +1,14 @@
 import React from 'react'
 import WeatherList from './WeatherList'
-import Hero from './Hero'
+import HeroContainer from './HeroContainer'
+import { useSelector } from 'react-redux'
 
 const Home = () => {
+    const isLoading = useSelector(state => state.isLoading)
+    if (isLoading) return <div>Loading</div>
     return (
         <React.Fragment>
-            <Hero />
+            <HeroContainer />
             <WeatherList />
         </React.Fragment>
     )

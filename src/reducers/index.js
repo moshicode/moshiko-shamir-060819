@@ -1,19 +1,28 @@
 import { combineReducers } from 'redux'
 
-import locationReducer from './fetch_location'
-
 /// FINISH
-import apiReducer from './api'
+// import apiReducer from './api'
 import favoritesReducer from './favorites'
 import temperatureReducer from './celsius'
 import darkModeReducer from './darkmode'
+import loadingReducer from './isLoading'
+
+
+/// TRYING
+
+import weatherReducer from './weather'
+import locationReducer from './location'
+import suggestionsReducer from './suggestions'
 
 const rootReducers = combineReducers({
-    // location: locationReducer,
     favoritesData: favoritesReducer,
-    weatherData: apiReducer,
+    // weatherData: apiReducer,
     isCelsius: temperatureReducer,
-    isDark: darkModeReducer
+    isDark: darkModeReducer,
+    isLoading: loadingReducer,
+    weather: weatherReducer,
+    location: locationReducer,
+    suggestions: suggestionsReducer,
 })
 
 export default rootReducers

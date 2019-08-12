@@ -5,16 +5,17 @@ import Header from './components/Header'
 import Favorites from './components/Favorites'
 import { Switch, Route } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { getLocationKey } from './actions/apiActions'
+import { getLocationKey, getAllWeather } from './actions/apiActions'
+import { getLocation, getWeather } from './actions/weatherActions'
 import store from './store'
 
 function App() {
-  const isDarkMode = useSelector(state => state.isDark)
 
   useEffect(() =>
-    store.dispatch(getLocationKey('tel aviv')), []
-  );
+    store.dispatch(getLocation('Tel aviv'))
+  )
 
+  const isDarkMode = useSelector(state => state.isDark)
   return (
     <div className={isDarkMode ? 'app dark' : 'app'}>
       <Header />
