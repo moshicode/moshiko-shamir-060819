@@ -1,4 +1,3 @@
-const initialState = []
 
 const locationReducer = (state = [], action) => {
     switch (action.type) {

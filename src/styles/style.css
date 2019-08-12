@@ -120,6 +120,25 @@ body {
 .header__list li {
   margin-left: 1.6rem;
 }
+.header__list li i {
+  font-size: 2rem;
+}
+.header__favorite-icon {
+  position: relative;
+}
+.header__favorite-num {
+  position: absolute;
+  top: 6px;
+  left: 12px;
+  border-radius: 100px;
+  height: 16px;
+  width: 16px;
+  background-color: orange;
+  text-align: center;
+  font-size: 10px;
+  line-height: 17px;
+  font-family: "Open Sans", sans-serif;
+}
 .hero {
   background-image: linear-gradient(rgba(245, 177, 83, 0.75), #fff), url(../images/background-image.jpg);
   background-position: bottom center;
@@ -191,7 +210,7 @@ body {
     flex-basis: 30px;
     align-items: center;
   }
-  .weather-forecast__item :nth-child(n+3) {
+  .weather-forecast__item :nth-child(n + 3) {
     flex-grow: 1;
   }
   .weather-forecast__item > p {
@@ -232,6 +251,15 @@ body {
 }
 .favorites {
   padding-top: 8rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 2fr));
+  grid-auto-rows: auto;
+  grid-gap: 2rem;
+}
+.favorites__item {
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 8px;
 }
 .icon-accu1:before {
   content: "\f00d";

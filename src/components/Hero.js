@@ -2,8 +2,6 @@ import React from 'react'
 import SearchLocation from './SearchLocation'
 import { useSelector } from 'react-redux'
 
-
-
 const Hero = () => {
     const currentWeather = useSelector(state => state.weatherData.currentWeather)
     const isDarkMode = useSelector(state => state.isDark)
@@ -14,6 +12,5 @@ const Hero = () => {
         </div>
     )
 }
-
 
 export default Hero

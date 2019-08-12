@@ -1,14 +1,10 @@
-// import React, { Component } from 'react';
-// import React from 'react'
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
-// import { fetchLocation, getLocationKey } from '../actions'
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux'
 import { getLocationKey } from '../actions/apiActions'
 
 
 const SearchLocation = () => {
     const [text, setText] = useState('');
-    // const location = useSelector(state => state.location)
     const dispatch = useDispatch()
 
     const onChange = async (e) => {
@@ -18,8 +14,7 @@ const SearchLocation = () => {
 
     const onSubmit = async (e) => {
         if (text !== '') {
-            await dispatch(getLocationKey(text)) // ! NEED TO CHANGE IT TO GET the location key
-            console.log('dispatch to redux')
+            await dispatch(getLocationKey(text))
             await setText('')
         }
     }

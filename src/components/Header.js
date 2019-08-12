@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { toggleDarkMode } from '../actions'
 
 const Header = () => {
+    const favorites = useSelector(state => state.favoritesData)
     const dispatch = useDispatch()
 
     return (
@@ -16,7 +17,9 @@ const Header = () => {
                     <ul className="header__list">
                         <li>
                             <Link to="/favorites">
-                                <i className="fas fa-heart"></i>
+                                <i className="header__favorite-icon fas fa-heart">
+                                    <div className="header__favorite-num">{favorites.length}</div>
+                                </i>
                             </Link>
                         </li>
                         <li>

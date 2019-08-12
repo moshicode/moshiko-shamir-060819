@@ -1,7 +1,6 @@
 import { loadState } from '../helpers/localStorage'
 
 const intialState = loadState()
-console.log(intialState)
 
 const favoritesReducer = (state = intialState, action) => {
     switch (action.type) {

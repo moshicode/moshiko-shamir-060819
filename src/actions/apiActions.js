@@ -1,7 +1,6 @@
 import axios from 'axios'
 import image from '../images/background-image.jpg'
-
-const API_KEY = 'dWD7IznmsGfuKaKFufT5l9vOGUgNiiQG'
+const API_KEY = 'DVaSHCZ2oK98ZriCAWD9hnT7V0jxRO9g'
 const ROOT_URL = 'https://dataservice.accuweather.com'
 
 export const getLocationKey = cityName => {
@@ -10,7 +9,8 @@ export const getLocationKey = cityName => {
             .then(res => {
                 let filterRes = { ...res.data[0] }
                 let { Key, LocalizedName } = filterRes
-
+                dispatch(getCurrentWeather(Key))
+                dispatch(getDailyForecasts(Key))
                 dispatch({
                     type: 'FETCH_LOCATION',
                     payload: {
@@ -18,8 +18,6 @@ export const getLocationKey = cityName => {
                         LocalizedName
                     }
                 })
-                dispatch(getDailyForecasts(Key))
-                dispatch(getCurrentWeather(Key))
             }).catch(err => {
                 console.log(err);
             })
@@ -31,8 +29,6 @@ export const getDailyForecasts = locationKey => {
     return (dispatch) => {
         axios.get(`${ROOT_URL}/forecasts/v1/daily/5day/${locationKey}?apikey=${API_KEY}&metric=true`)
             .then(res => {
-                console.log(res)
-                console.log(res.data.DailyForecasts)
                 dispatch({
                     type: 'FETCH_FORECASTS',
                     payload: res.data.DailyForecasts
@@ -49,14 +45,13 @@ export const getCurrentWeather = locationKey => {
             .then(res => {
                 let filterRes = { ...res.data[0] }
                 let { IsDayTime, LocalObservationDateTime, Photos = { image }, Temperature, WeatherIcon, WeatherText } = filterRes
-
                 dispatch({
                     type: 'FETCH_CURRENT_WEATHER',
                     payload: {
                         IsDayTime,
                         LocalObservationDateTime,
                         Photos: Photos[0].LandscapeLink.replace("_L_L", "_L_XXL"),
-                        Temperature,
+                        Temperature: Temperature.Metric.Value,
                         WeatherIcon,
                         WeatherText
                     }

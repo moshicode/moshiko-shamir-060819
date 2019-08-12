@@ -8,6 +8,7 @@ import store from './store'
 import { saveState } from './helpers/localStorage'
 
 
+
 store.subscribe(() => {
     saveState(store.getState().favoritesData)
 })
