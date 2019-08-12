@@ -1,14 +1,22 @@
 import React from 'react';
 import moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
-import { addFavorite } from '../actions'
+import { addFavorite, removeFavorite } from '../actions'
 
 function WeatherList() {
     const dailyForecasts = useSelector(state => state.weatherData.forecasts)
     const currentWeather = useSelector(state => state.weatherData.currentWeather)
     const location = useSelector(state => state.weatherData.location)
     const isDayTime = currentWeather.isDayTime ? 'Day' : 'Night'
+    const favorites = useSelector(state => state.favoritesData)
     const dispatch = useDispatch()
+
+    const checkFavoriteExist = locationKey => {
+        console.log(locationKey)
+        favorites.some(({ id }) => id == locationKey)
+    }
+
+    console.log(favorites)
 
     return (
         <div className="weather-forecast container">
@@ -17,16 +25,21 @@ function WeatherList() {
                 <div className="weather-forecast__current">
                     <p className="weather-forecast__day">Today</p>
                     <p className="weather-forecast__text">{currentWeather.WeatherText}</p>
-                    <p className="weather-forecast__temp">{currentWeather.Temperature}</p>
-                    {/* <p className="weather-forecast__temp">{currentWeather.Temperature[isMetric ? 'Metric' : 'Imperial'].Value}{isMetric ? `℃` : '℉'}</p> */}
+                    <p className="weather-forecast__temp">{currentWeather.Temperature}℃</p>
                 </div>
-                <button
-                    className="weather-current__btn"
-                    onClick={() => dispatch(
-                        addFavorite(location.Key, location.LocalizedName)
-                    )}>Add to Favorite</button>
+
+                {favorites.some(({ id }) => id == location.Key) ?
+                    <button className="weather-current__btn" onClick={() => dispatch(
+                        removeFavorite(location.Key, location.LocalizedName))}>Unfollow
+                </button> :
+                    <button className="weather-current__btn" onClick={() => dispatch(
+                        addFavorite(location.Key, location.LocalizedName))}>Follow
+                </button>
+                }
 
             </div>
+
+
             {/* <button
                     onClick={() => localStorage.setItem('favorites', JSON.stringify(location))}>
                     Add to Favorite
