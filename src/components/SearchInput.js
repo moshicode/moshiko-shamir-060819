@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import axios from 'axios'
-import { getSuggestions, resetSuggestions, getLocation, getWeather, getAllWeather } from '../actions/weatherActions'
 import { useSelector, useDispatch } from 'react-redux'
+import { getSuggestions, resetSuggestions, getLocation } from '../actions/weatherActions'
 
 const SearchInput = () => {
     const location = useSelector(state => state.suggestions)

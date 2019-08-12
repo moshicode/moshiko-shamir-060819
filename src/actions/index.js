@@ -1,16 +1,14 @@
 // Favorites
 export const addFavorite = (id, name) => {
-    return (dispatch, getState) => {
-        const state = getState()
-        dispatch({
-            type: 'ADD_FAVORITE',
-            payload: {
-                id: id,
-                name: name
-            }
-        })
+    return {
+        type: 'ADD_FAVORITE',
+        payload: {
+            id: id,
+            name: name
+        }
     }
 }
+
 
 export const removeFavorite = id => {
     return {
