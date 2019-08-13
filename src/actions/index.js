@@ -15,9 +15,7 @@ export const addFavorite = (id, name) => {
 }
 
 export const setFavoriteWeather = id => async dispatch => {
-
     const response = await axios.get(`${ROOT_URL}/currentconditions/v1/${id}?apikey=${API_KEY}&getphotos=true`)
-    console.log(response)
     dispatch({ type: 'UPDATE_FAVORITE', payload: response.data[0] })
 }
 
@@ -39,7 +37,7 @@ export const toggleLoading = () => {
 
 // Convert temp
 
-export const convertTempUnits = () => {
+export const convertUnits = () => {
     return {
         type: 'CONVERT_TEMPERATURE_UNITS'
     }

@@ -18,7 +18,6 @@ function WeatherList() {
                     <p className="weather-forecast__text">{currentWeather.WeatherText}</p>
                     <p className="weather-forecast__temp">{currentWeather.Temperature.Metric.Value}℃</p>
                 </div>
-
                 {favorites.some(({ id }) => id === location.Key) ?
                     <button className="weather-current__btn" onClick={() => dispatch(
                         removeFavorite(location.Key, location.LocalizedName))}>Unfollow

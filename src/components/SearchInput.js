@@ -19,7 +19,6 @@ const SearchInput = () => {
     const handleKeyPress = (e) => {
         if (e.charCode === 13 || e.key === 'Enter') {
             e.preventDefault()
-            // e.target.blur() ! to check if work on mobile for android keyboards
             handleSubmit()
         }
     }
@@ -27,10 +26,6 @@ const SearchInput = () => {
     const handleSubmit = e => {
         const cityName = state.text
         dispatch(getLocation(cityName))
-        // if (state.text === state.suggestionSelected) {
-        // } else {
-        //     console.log(false)
-        // }
         setState({ text: '' })
         dispatch(resetSuggestions())
     }
