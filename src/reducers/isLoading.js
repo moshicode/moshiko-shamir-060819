@@ -1,6 +1,6 @@
 const isLoading = (state = true, action) => {
     switch (action.type) {
-        case 'FINISH_LOADING':
+        case 'TOGGLE_LOADING':
             return false
         default:
             return state

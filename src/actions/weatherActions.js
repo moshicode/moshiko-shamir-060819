@@ -21,23 +21,10 @@ export const getLocation = cityName => async (dispatch, getState) => {
     await dispatch(getWeather(getState().location.Key))
 }
 
-export const resetLocation = () => {
-    return {
-        type: 'RESET_LOCATION'
-    }
-}
-
 export const getWeather = locationKey => async dispatch => {
     await dispatch(getCurrentWeather(locationKey))
     await dispatch(getDailyForecasts(locationKey))
-    dispatch({ type: 'FINISH_LOADING' })
-}
-
-
-export const getAllWeather = cityName => async (dispatch, getState) => {
-    await dispatch(getCurrentWeather(getState().location.Key))
-    await dispatch(getDailyForecasts(getState().location.Key))
-    dispatch({ type: 'FINISH_LOADING' })
+    dispatch({ type: 'TOGGLE_LOADING' })
 }
 
 export const getCurrentWeather = locationKey => async dispatch => {

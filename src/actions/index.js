@@ -1,3 +1,8 @@
+import axios from 'axios'
+const API_KEY = 'gQ307OUWQ0rbqOqwiGr85Z3JDQBtEEII'
+const ROOT_URL = 'https://dataservice.accuweather.com'
+
+
 // Favorites
 export const addFavorite = (id, name) => {
     return {
@@ -7,6 +12,13 @@ export const addFavorite = (id, name) => {
             name: name
         }
     }
+}
+
+export const setFavoriteWeather = id => async dispatch => {
+
+    const response = await axios.get(`${ROOT_URL}/currentconditions/v1/${id}?apikey=${API_KEY}&getphotos=true`)
+    console.log(response)
+    dispatch({ type: 'UPDATE_FAVORITE', payload: response.data[0] })
 }
 
 
@@ -21,7 +33,7 @@ export const removeFavorite = id => {
 
 export const toggleLoading = () => {
     return {
-        type: 'FINISH_LOADING'
+        type: 'TOGGLE_LOADING'
     }
 }
 

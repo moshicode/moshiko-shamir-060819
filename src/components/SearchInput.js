@@ -26,11 +26,11 @@ const SearchInput = () => {
 
     const handleSubmit = e => {
         const cityName = state.text
-        if (state.text === state.suggestionSelected) {
-            dispatch(getLocation(cityName))
-        } else {
-            console.log(false)
-        }
+        dispatch(getLocation(cityName))
+        // if (state.text === state.suggestionSelected) {
+        // } else {
+        //     console.log(false)
+        // }
         setState({ text: '' })
         dispatch(resetSuggestions())
     }

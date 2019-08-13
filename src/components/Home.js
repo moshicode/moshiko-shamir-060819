@@ -5,12 +5,12 @@ import { useSelector } from 'react-redux'
 
 const Home = () => {
     const isLoading = useSelector(state => state.isLoading)
-    if (isLoading) return <div>Loading</div>
+    if (isLoading) return <div className="loading-wrapper"><div className="cloudy"></div></div>
     return (
-        <React.Fragment>
+        <>
             <HeroContainer />
             <WeatherList />
-        </React.Fragment>
+        </>
     )
 }
 
