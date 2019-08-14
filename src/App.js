@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getLocation('Tel aviv'));
-  })
+  }, [dispatch])
 
   return (
     <div className={isDarkMode ? 'app dark' : 'app'}>

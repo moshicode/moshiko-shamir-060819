@@ -1,9 +1,21 @@
-const suggestionsReducer = (state = '', action) => {
+const initialState = {
+    text: '',
+    locations: []
+}
+const suggestionsReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'GET_SUGGESTIONS':
-            return action.payload
+            return {
+                ...state,
+                locations: action.payload
+            }
         case 'RESET_SUGGESTIONS':
-            return state = []
+            return {
+                text: '',
+                locations: []
+            }
+        case 'SET_TEXT':
+            return { ...state, text: action.payload }
         default:
             return state
     }

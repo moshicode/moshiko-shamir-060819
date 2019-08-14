@@ -1,52 +1,54 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getSuggestions, resetSuggestions, getLocation } from '../actions/weatherActions'
+import { getSuggestions, resetSuggestions, getLocation, getLocationKey, setLocationBySuggestion, getWeather, setSuggestValue } from '../actions/weatherActions'
 
 const SearchInput = () => {
-    const location = useSelector(state => state.suggestions)
+    const suggestions = useSelector(state => state.suggestions)
+    const location = useSelector(state => state.location)
     const dispatch = useDispatch()
-
-    const [state, setState] = useState({ text: '', suggestionSelected: '' });
 
     const handleChange = e => {
         const value = e.target.value
-        setState({ text: value })
+        dispatch(setSuggestValue(value))
         if (value.length > 0) {
             dispatch(getSuggestions(value))
         }
     }
 
-    const handleKeyPress = (e) => {
-        if (e.charCode === 13 || e.key === 'Enter') {
-            e.preventDefault()
-            handleSubmit()
+    const handleSubmit = async e => {
+        if (suggestions.text.length > 0 && suggestions.locations.length > 0) {
+            await dispatch(getLocationKey(suggestions.text))
+            await dispatch(getWeather(location.key))
+            dispatch(resetSuggestions())
         }
     }
 
-    const handleSubmit = e => {
-        const cityName = state.text
-        dispatch(getLocation(cityName))
-        setState({ text: '' })
-        dispatch(resetSuggestions())
+    const handleKeyPress = async (e) => {
+        if (e.charCode === 13 || e.key === 'Enter') {
+            e.preventDefault()
+            await handleSubmit()
+        }
     }
 
-    const suggestionSelected = item => {
-        setState({ text: item, suggestionSelected: item })
-        dispatch(resetSuggestions())
+    const suggestionSelected = async locationRawData => {
+        await dispatch(setLocationBySuggestion(locationRawData))
+        await dispatch(getWeather(locationRawData.key))
+        await dispatch(resetSuggestions())
     }
 
     const renderSuggestions = () => {
-        if (location.length === 0) {
+        if (suggestions.locations.length === 0) {
             return null
         }
 
         return (
             <ul className="search__results">
-                {location.map((item, index) =>
+                {suggestions.locations.map((location, index) =>
                     <li
                         key={index}
-                        onClick={() => suggestionSelected(item)}
-                    >{item}
+                        onClick={() => suggestionSelected(location)}
+                    >
+                        {location.cityName}
                     </li>)
                 }
             </ul>
@@ -60,7 +62,7 @@ const SearchInput = () => {
                 type="text"
                 placeholder="Search By City..."
                 onChange={handleChange}
-                value={state.text}
+                value={suggestions.text}
                 onKeyPress={handleKeyPress}
             />
             <button
