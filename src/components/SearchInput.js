@@ -37,7 +37,7 @@ const SearchInput = () => {
     }
 
     const renderSuggestions = () => {
-        if (suggestions.locations.length === 0) {
+        if (suggestions.locations.length === 0 || suggestions.text.length === 0) {
             return null
         }
 
