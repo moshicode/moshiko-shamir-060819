@@ -8,7 +8,8 @@ const ROOT_URL = 'https://dataservice.accuweather.com'
 // Get array of locations suggestions with name & key
 export const getSuggestions = cityName => async dispatch => {
     const response = await axios.get(`${ROOT_URL}/locations/v1/cities/autocomplete?q=${cityName}&apikey=${API_KEY}`)
-    dispatch({ type: 'GET_SUGGESTIONS', payload: response.data.map(suggest => ({ cityName: suggest.LocalizedName, key: suggest.Key })) })
+    console.log(response)
+    dispatch({ type: 'GET_SUGGESTIONS', payload: response.data.map(suggest => ({ cityName: suggest.LocalizedName, key: suggest.Key, country: suggest.Country.LocalizedName })) })
 }
 
 // Set location name & key - only if it select from the locations suggestions

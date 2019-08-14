@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getSuggestions, resetSuggestions, getLocation, getLocationKey, setLocationBySuggestion, getWeather, setSuggestValue } from '../actions/weatherActions'
+import { getSuggestions, resetSuggestions, getLocationKey, setLocationBySuggestion, getWeather, setSuggestValue } from '../actions/weatherActions'
 
 const SearchInput = () => {
     const suggestions = useSelector(state => state.suggestions)
@@ -42,13 +42,13 @@ const SearchInput = () => {
         }
 
         return (
-            <ul className="search__results">
+            <ul className="search__results results">
                 {suggestions.locations.map((location, index) =>
                     <li
                         key={index}
                         onClick={() => suggestionSelected(location)}
                     >
-                        {location.cityName}
+                        <span>{location.cityName}</span><span className="search__label">{location.country}</span>
                     </li>)
                 }
             </ul>
