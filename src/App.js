@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './styles/style.css'
 import Header from './components/Header'
 import { useSelector, useDispatch } from 'react-redux'
-import { getLocation } from './actions/weatherActions'
+import { getLocation, getLocationKeyByGEO } from './actions/weatherActions'
 import Routes from './routes'
 
 function App() {
@@ -10,7 +10,13 @@ function App() {
   const isDarkMode = useSelector(state => state.isDark)
 
   useEffect(() => {
-    dispatch(getLocation('Tel aviv'));
+    navigator.geolocation.getCurrentPosition(
+      position => dispatch(getLocationKeyByGEO(position.coords.latitude, position.coords.longitude)),
+      err => {
+        console.log(err.message)
+        dispatch(getLocation('Jerusalem'))
+      }
+    )
   }, [dispatch])
 
   return (

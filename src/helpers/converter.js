@@ -1,10 +1,7 @@
-import store from '../store'
-
-export const converter = num => {
-    const isCell = store.getState().isCellsius
-    if (isCell) {
-        return `${num}\xB0C`
+export const converter = (min, shouldconvert = false) => {
+    if (shouldconvert) {
+        return `${Math.floor(min * 9 / 5 + 32)}\xB0F`
     } else {
-        return `${num * 9 / 5 + 32}\xB0F`
+        return `${min}\xB0C`
     }
 }

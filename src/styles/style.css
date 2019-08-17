@@ -133,7 +133,7 @@ body {
   border-radius: 100px;
   height: 16px;
   width: 16px;
-  background-color: orange;
+  background-color: #ff9e18;
   text-align: center;
   font-size: 10px;
   line-height: 17px;
@@ -141,6 +141,7 @@ body {
 }
 .hero {
   background-position: bottom center;
+  background-repeat: no-repeat;
   background-size: auto;
   height: 65vh;
   display: flex;
@@ -177,9 +178,11 @@ body {
 .hero .search__btn {
   position: absolute;
   right: 1.6rem;
-  bottom: 0;
-  top: 0;
+  bottom: 1rem;
+  top: 1rem;
+  padding-left: 1rem;
   color: #000;
+  background-color: #fff;
 }
 .hero .search__results {
   position: absolute;
@@ -300,16 +303,18 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  background-color: orangered;
+  background-color: #ff9e18;
   transition: 5s ease-in-out infinite;
 }
 .cloudy {
   animation: cloudy 5s ease-in-out infinite;
   background: #FFFFFF;
   border-radius: 50%;
-  box-shadow: #FFFFFF 95px -15px 0 -5px, #FFFFFF 25px -25px, #FFFFFF 30px 10px, #FFFFFF 60px 15px 0 -10px, #FFFFFF 85px 5px 0 -5px;
+  box-shadow: #FFFFFF 60px -15px 0 -5px, #FFFFFF 25px -25px, #FFFFFF 30px 10px, #FFFFFF 60px 15px 0 -10px, #FFFFFF 85px 5px 0 -5px;
   height: 50px;
   width: 50px;
+  position: relative;
+  right: 30px;
 }
 .cloudy:after {
   animation: cloudy_shadow 5s ease-in-out infinite;

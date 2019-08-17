@@ -1,39 +1,44 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getSuggestions, resetSuggestions, getLocationKey, setLocationBySuggestion, getWeather, setSuggestValue } from '../actions/weatherActions'
+import { getSuggestions, resetSuggestions, getLocation, setLocationBySuggestion, getWeather, setSuggestValue } from '../actions/weatherActions'
+// import { throttle } from 'lodash';
+
 
 const SearchInput = () => {
     const suggestions = useSelector(state => state.suggestions)
-    const location = useSelector(state => state.location)
+    // const location = useSelector(state => state.location)
     const dispatch = useDispatch()
 
-    const handleChange = e => {
+    const handleChange = async e => {
         const value = e.target.value
-        dispatch(setSuggestValue(value))
-        if (value.length > 0) {
-            dispatch(getSuggestions(value))
+        await dispatch(setSuggestValue(value))
+        if (suggestions.isFetching === 0) {
+            await dispatch(getSuggestions(value))
         }
     }
+
 
     const handleSubmit = async e => {
-        if (suggestions.text.length > 0 && suggestions.locations.length > 0) {
-            await dispatch(getLocationKey(suggestions.text))
-            await dispatch(getWeather(location.key))
-            dispatch(resetSuggestions())
+        if (suggestions.text.length !== 0 && suggestions.isFetching === 0 && suggestions.locations.length > 0) {
+            // await dispatch(getLocationKey(suggestions.text))
+            // console.log(suggestions.text)
+            // console.log(suggestions.locations[0].cityName)
+            await dispatch(getLocation(suggestions.locations[0].cityName))
+            await dispatch(resetSuggestions())
         }
     }
 
-    const handleKeyPress = async (e) => {
+    const handleKeyPress = (e) => {
         if (e.charCode === 13 || e.key === 'Enter') {
             e.preventDefault()
-            await handleSubmit()
+            handleSubmit()
         }
     }
 
-    const suggestionSelected = async locationRawData => {
-        await dispatch(setLocationBySuggestion(locationRawData))
-        await dispatch(getWeather(locationRawData.key))
-        await dispatch(resetSuggestions())
+    const suggestionSelected = locationRawData => {
+        dispatch(setLocationBySuggestion(locationRawData))
+        dispatch(getWeather(locationRawData.key))
+        dispatch(resetSuggestions())
     }
 
     const renderSuggestions = () => {
@@ -55,26 +60,28 @@ const SearchInput = () => {
         )
     }
 
-    return (
-        <div className="hero__search search">
-            <input
-                className="search__input"
-                type="text"
-                placeholder="Search By City..."
-                onChange={handleChange}
-                value={suggestions.text}
-                onKeyPress={handleKeyPress}
-            />
-            <button
-                className="search__btn"
-                onClick={(e) => handleSubmit()}
-                onKeyPress={handleKeyPress}
-            >
-                <i className="fas fa-search"></i>
-            </button>
-            {renderSuggestions()}
-        </div>
-    )
+    if (suggestions.locations)
+
+        return (
+            <div className="hero__search search">
+                <input
+                    className="search__input"
+                    type="text"
+                    placeholder="Search By City..."
+                    onChange={handleChange}
+                    value={suggestions.text}
+                    onKeyPress={handleKeyPress}
+                />
+                <button
+                    className="search__btn"
+                    onClick={handleSubmit}
+                    onKeyPress={handleKeyPress}
+                >
+                    <i className="fas fa-search"></i>
+                </button>
+                {renderSuggestions()}
+            </div>
+        )
 }
 
 export default SearchInput

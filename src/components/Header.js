@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { toggleDarkMode } from '../actions'
+import { toggleDarkMode, convertUnits } from '../actions'
 
 const Header = () => {
     const favorites = useSelector(state => state.favoritesData)
@@ -24,6 +24,9 @@ const Header = () => {
                         </li>
                         <li>
                             <button onClick={(e) => dispatch(toggleDarkMode())}><i className="fas fa-adjust"></i></button>
+                        </li>
+                        <li>
+                            <button onClick={e => dispatch(convertUnits())}>convert</button>
                         </li>
                     </ul>
                 </nav>

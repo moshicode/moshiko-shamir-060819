@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
 import favoritesReducer from './favorites'
-import temperatureReducer from './celsius'
+import metricReducer from './isMetric'
 import darkModeReducer from './darkmode'
 import loadingReducer from './isLoading'
 
@@ -11,7 +11,7 @@ import suggestionsReducer from './suggestions'
 
 const rootReducers = combineReducers({
     favoritesData: favoritesReducer,
-    isCelsius: temperatureReducer,
+    isMetric: metricReducer,
     isDark: darkModeReducer,
     isLoading: loadingReducer,
     weather: weatherReducer,

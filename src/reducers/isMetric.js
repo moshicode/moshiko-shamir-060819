@@ -1,4 +1,4 @@
-const celsiusReducer = (state = true, action) => {
+const metricReducer = (state = false, action) => {
     switch (action.type) {
         case 'CONVERT_TEMPERATURE_UNITS':
             return !state
@@ -7,4 +7,4 @@ const celsiusReducer = (state = true, action) => {
     }
 }
 
-export default celsiusReducer
+export default metricReducer
