@@ -208,6 +208,9 @@ body {
 .hero .search__results li:hover {
   background-color: #f5b153bf;
 }
+.hero .search__results li:last-child {
+  border-bottom: none;
+}
 .hero .search__label {
   font-size: 1.2rem;
   color: gray;

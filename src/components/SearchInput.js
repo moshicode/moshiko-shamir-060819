@@ -11,33 +11,53 @@ const SearchInput = () => {
 
     const handleChange = async e => {
         const value = e.target.value
-        await dispatch(setSuggestValue(value))
-        if (suggestions.isFetching === 0) {
+        dispatch(setSuggestValue(value))
+        if (value.length > 0) {
             await dispatch(getSuggestions(value))
+        } else {
+            dispatch(resetSuggestions())
         }
     }
 
 
     const handleSubmit = async e => {
-        if (suggestions.text.length !== 0 && suggestions.isFetching === 0 && suggestions.locations.length > 0) {
-            // await dispatch(getLocationKey(suggestions.text))
-            // console.log(suggestions.text)
-            // console.log(suggestions.locations[0].cityName)
+        if (suggestions.text.length > 0 && suggestions.isFetching === 0 && suggestions.locations.length > 0) {
             await dispatch(getLocation(suggestions.locations[0].cityName))
-            await dispatch(resetSuggestions())
+            dispatch(resetSuggestions())
         }
     }
 
-    const handleKeyPress = (e) => {
+    const handleKeyPress = async (e) => {
         if (e.charCode === 13 || e.key === 'Enter') {
             e.preventDefault()
-            handleSubmit()
+            await handleSubmit()
         }
     }
 
-    const suggestionSelected = locationRawData => {
-        dispatch(setLocationBySuggestion(locationRawData))
-        dispatch(getWeather(locationRawData.key))
+    const labelButton = () => {
+        if (suggestions.locations.length > 0 && suggestions.text.length > 0) {
+            return (
+                <button
+                    className="search__btn"
+                    onClick={() => dispatch(resetSuggestions())}
+                >
+                    <i className="fas fa-times"></i>
+                </button>
+            )
+        } else {
+            return (
+                <button
+                    className="search__btn"
+                    onClick={handleSubmit}>
+                    <i className="fas fa-search"></i>
+                </button>
+            )
+        }
+    }
+
+    const suggestionSelected = async locationRawData => {
+        await dispatch(setLocationBySuggestion(locationRawData))
+        await dispatch(getWeather(locationRawData.key))
         dispatch(resetSuggestions())
     }
 
@@ -51,7 +71,7 @@ const SearchInput = () => {
                 {suggestions.locations.map((location, index) =>
                     <li
                         key={index}
-                        onClick={() => suggestionSelected(location)}
+                        onClick={async () => await suggestionSelected(location)}
                     >
                         <span>{location.cityName}</span><span className="search__label">{location.country}</span>
                     </li>)
@@ -72,13 +92,13 @@ const SearchInput = () => {
                     value={suggestions.text}
                     onKeyPress={handleKeyPress}
                 />
-                <button
+                {labelButton()}
+                {/* <button
                     className="search__btn"
                     onClick={handleSubmit}
-                    onKeyPress={handleKeyPress}
                 >
                     <i className="fas fa-search"></i>
-                </button>
+                </button> */}
                 {renderSuggestions()}
             </div>
         )
