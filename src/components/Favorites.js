@@ -9,7 +9,7 @@ function Favorites() {
     const favorites = useSelector(state => state.favoritesData)
     const dispatch = useDispatch()
 
-    const [fav, setFav] = useState([])
+    const [favs, setFav] = useState([]);
     const [isFetching, setFetch] = useState(true)
 
     useEffect(() => {
@@ -17,14 +17,19 @@ function Favorites() {
     }, []);
 
     const fetchFavorites = async () => {
+        setFetch(true)
+        const tempFavorites = {}
         for await (let favorite of favorites) {
             const response = await axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${favorite.id}?apikey=gQ307OUWQ0rbqOqwiGr85Z3JDQBtEEII&getphotos=true`)
-            await setFav({ [favorite.id]: response.data[0] })
+            tempFavorites[favorite.id] = response.data[0]
         }
-        setFetch(false)
+        setFav(tempFavorites)
+        // console.log(false)
+        await setFetch(false)
     }
 
     if (isFetching) {
+        console.log(isFetching)
         return (
             <div className="favorites container">loading...</div>
         )
@@ -36,9 +41,8 @@ function Favorites() {
                     className="favorites__item"
                     key={index}>
                     <p>{favorite.name}</p>
-                    <p>{fav[favorite.id].WeatherText}</p>
-                    <p>{fav[favorite.id].Temperature.Metric.Value}℃</p>
-                    {console.log(fav[favorite.id])}
+                    <p>{favs[favorite.id].WeatherText}</p>
+                    <p>{favs[favorite.id].Temperature.Metric.Value}℃</p>
                     <button
                         onClick={() => dispatch(removeFavorite(favorite.id))}>
                         Remove Favorite
