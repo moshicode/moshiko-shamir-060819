@@ -1,7 +1,3 @@
-import axios from 'axios'
-const API_KEY = 'gQ307OUWQ0rbqOqwiGr85Z3JDQBtEEII'
-const ROOT_URL = 'https://dataservice.accuweather.com'
-
 
 // Favorites
 export const addFavorite = (id, name) => {
@@ -12,11 +8,6 @@ export const addFavorite = (id, name) => {
             name: name
         }
     }
-}
-
-export const setFavoriteWeather = id => async dispatch => {
-    const response = await axios.get(`${ROOT_URL}/currentconditions/v1/${id}?apikey=${API_KEY}&getphotos=true`)
-    dispatch({ type: 'UPDATE_FAVORITE', payload: response.data[0] })
 }
 
 

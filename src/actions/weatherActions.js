@@ -43,10 +43,8 @@ export const getLocationKeyByGEO = (latitude, longitude) => async (dispatch, get
 }
 
 // Get location RAW DATA { key, cityName} by city name => after: auto excute getWeather() 
-export const getLocation = cityName => async (dispatch, getState) => {
-    console.log(cityName)
+export const getLocation = cityName => async dispatch => {
     const response = await axios.get(`${ROOT_URL}/locations/v1/cities/autocomplete?q=${cityName}&apikey=${API_KEY}`)
-    console.log(response)
     await dispatch({ type: 'SET_LOCATION', payload: { cityName: response.data[0].LocalizedName, key: response.data[0].Key } })
     await dispatch(getWeather(response.data[0].Key))
 }
@@ -58,8 +56,9 @@ export const getWeather = locationKey => async dispatch => {
     await dispatch({ type: 'TOGGLE_LOADING' })
 }
 
+
 // Get Current Weather by location Key
-export const getCurrentWeather = locationKey => async dispatch => {
+export const getCurrentWeather = (locationKey, isFavorite = false) => async dispatch => {
     const response = await axios.get(`${ROOT_URL}/currentconditions/v1/${locationKey}?apikey=${API_KEY}&getphotos=true`)
     await dispatch({ type: 'GET_CURRENT_WEATHER', payload: response.data[0] })
 }

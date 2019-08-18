@@ -6,7 +6,6 @@ import { getSuggestions, resetSuggestions, getLocation, setLocationBySuggestion,
 
 const SearchInput = () => {
     const suggestions = useSelector(state => state.suggestions)
-    // const location = useSelector(state => state.location)
     const dispatch = useDispatch()
 
     const handleChange = async e => {
@@ -19,7 +18,6 @@ const SearchInput = () => {
         }
     }
 
-
     const handleSubmit = async e => {
         if (suggestions.text.length > 0 && suggestions.isFetching === 0 && suggestions.locations.length > 0) {
             await dispatch(getLocation(suggestions.locations[0].cityName))
@@ -27,7 +25,7 @@ const SearchInput = () => {
         }
     }
 
-    const handleKeyPress = async (e) => {
+    const handleKeyPress = async e => {
         if (e.charCode === 13 || e.key === 'Enter') {
             e.preventDefault()
             await handleSubmit()
@@ -44,21 +42,21 @@ const SearchInput = () => {
                     <i className="fas fa-times"></i>
                 </button>
             )
-        } else {
-            return (
-                <button
-                    className="search__btn"
-                    onClick={handleSubmit}>
-                    <i className="fas fa-search"></i>
-                </button>
-            )
         }
+        return (
+            <button
+                className="search__btn"
+                onClick={handleSubmit}>
+                <i className="fas fa-search"></i>
+            </button>
+        )
+
     }
 
     const suggestionSelected = async locationRawData => {
+        dispatch(resetSuggestions())
         await dispatch(setLocationBySuggestion(locationRawData))
         await dispatch(getWeather(locationRawData.key))
-        dispatch(resetSuggestions())
     }
 
     const renderSuggestions = () => {
@@ -80,28 +78,20 @@ const SearchInput = () => {
         )
     }
 
-    if (suggestions.locations)
-
-        return (
-            <div className="hero__search search">
-                <input
-                    className="search__input"
-                    type="text"
-                    placeholder="Search By City..."
-                    onChange={handleChange}
-                    value={suggestions.text}
-                    onKeyPress={handleKeyPress}
-                />
-                {labelButton()}
-                {/* <button
-                    className="search__btn"
-                    onClick={handleSubmit}
-                >
-                    <i className="fas fa-search"></i>
-                </button> */}
-                {renderSuggestions()}
-            </div>
-        )
+    return (
+        <div className="hero__search search">
+            <input
+                className="search__input"
+                type="text"
+                placeholder="Search By City..."
+                onChange={handleChange}
+                value={suggestions.text}
+                onKeyPress={handleKeyPress}
+            />
+            {labelButton()}
+            {renderSuggestions()}
+        </div>
+    )
 }
 
 export default SearchInput

@@ -11,10 +11,13 @@ const favoritesReducer = (state = intialState, action) => {
             ]
         case 'REMOVE_FAVORITE':
             return state.filter((item) => item.id !== action.payload)
-        // case 'UPDATE_FAVORITE':
-        //     return state.map(favorite => {
-        //         return { ...favorite, currentWeather: action.payload }
-        //     })
+        case 'UPDATE_FAVORITE':
+            return state.map(favorite => {
+                return {
+                    ...favorite,
+                    currentWeather: action.payload
+                }
+            })
         default:
             return state
     }

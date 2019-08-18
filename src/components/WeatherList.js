@@ -12,7 +12,6 @@ function WeatherList() {
     const favorites = useSelector(state => state.favoritesData)
     const isMetric = useSelector(state => state.isMetric)
     const dispatch = useDispatch()
-
     const isDayTime = currentWeather.IsDayTime ? 'Day' : 'Night'
 
     return (
