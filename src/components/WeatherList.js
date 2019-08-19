@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
 import { addFavorite, removeFavorite } from '../actions'
-import { converter } from '../helpers/converter'
+// import { converter } from '../helpers/converter'
 
 function WeatherList() {
 
@@ -10,7 +10,7 @@ function WeatherList() {
     const currentWeather = useSelector(state => state.weather.current)
     const location = useSelector(state => state.location)
     const favorites = useSelector(state => state.favoritesData)
-    const isMetric = useSelector(state => state.isMetric)
+    // const isMetric = useSelector(state => state.isMetric)
     const dispatch = useDispatch()
     const isDayTime = currentWeather.IsDayTime ? 'Day' : 'Night'
 

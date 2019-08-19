@@ -3,38 +3,6 @@ import axios from 'axios'
 const API_KEY = 'gQ307OUWQ0rbqOqwiGr85Z3JDQBtEEII'
 const ROOT_URL = 'https://dataservice.accuweather.com'
 
-// Get array of locations suggestions with RAW DATA { cityName, key, country }
-export const getSuggestions = cityName => async dispatch => {
-    if (cityName !== '') {
-        await dispatch({ type: 'GET_SUGGESTIONS_REQ' })
-        const response = await axios.get(`${ROOT_URL}/locations/v1/cities/autocomplete?q=${cityName}&apikey=${API_KEY}`)
-        await dispatch({ type: 'GET_SUGGESTIONS_RES', payload: response.data.map(suggest => ({ cityName: suggest.LocalizedName, key: suggest.Key, country: suggest.Country.LocalizedName })) })
-    }
-}
-
-// Set location RAW DATA { cityName, key, country} - only if it select from the locations suggestions
-export const setLocationBySuggestion = location => {
-    return {
-        type: 'SET_LOCATION',
-        payload: location
-    }
-}
-
-// Set text value from the search box
-export const setSuggestValue = text => {
-    return {
-        type: 'SET_TEXT',
-        payload: text
-    }
-}
-
-// Reset suggestions and text value to default
-export const resetSuggestions = () => {
-    return {
-        type: 'RESET_SUGGESTIONS'
-    }
-}
-
 // Get location RAW DATA { key, cityName } By GEO LOCATION (if accepted) => after: auto excute getWeather() 
 export const getLocationKeyByGEO = (latitude, longitude) => async (dispatch, getState) => {
     const response = await axios.get(`${ROOT_URL}/locations/v1/cities/geoposition/search?q=${latitude},${longitude}&apikey=${API_KEY}`)
@@ -56,9 +24,8 @@ export const getWeather = locationKey => async dispatch => {
     await dispatch({ type: 'TOGGLE_LOADING' })
 }
 
-
 // Get Current Weather by location Key
-export const getCurrentWeather = (locationKey, isFavorite = false) => async dispatch => {
+export const getCurrentWeather = locationKey => async dispatch => {
     const response = await axios.get(`${ROOT_URL}/currentconditions/v1/${locationKey}?apikey=${API_KEY}&getphotos=true`)
     await dispatch({ type: 'GET_CURRENT_WEATHER', payload: response.data[0] })
 }

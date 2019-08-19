@@ -1,6 +1,6 @@
 import React from 'react'
 import WeatherList from './WeatherList'
-import HeroContainer from './HeroContainer'
+import Hero from './Hero'
 import { useSelector } from 'react-redux'
 
 const Home = () => {
@@ -8,7 +8,7 @@ const Home = () => {
     if (isLoading) return <div className="loading-wrapper"><div className="cloudy"></div></div>
     return (
         <>
-            <HeroContainer />
+            <Hero />
             <WeatherList />
         </>
     )

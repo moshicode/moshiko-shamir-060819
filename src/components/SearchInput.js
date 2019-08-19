@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getSuggestions, resetSuggestions, getLocation, setLocationBySuggestion, getWeather, setSuggestValue } from '../actions/weatherActions'
+import { getLocation, getWeather } from '../actions/weatherActions'
+import { getSuggestions, resetSuggestions, setLocationBySuggestion, setSuggestValue } from '../actions/suggestionsActions'
 // import { throttle } from 'lodash';
 
 
