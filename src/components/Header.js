@@ -5,6 +5,7 @@ import { toggleDarkMode, convertUnits } from '../actions'
 
 const Header = () => {
     const favorites = useSelector(state => state.favoritesData)
+    const isMetric = useSelector(state => state.isMetric)
     const dispatch = useDispatch()
 
     return (
@@ -26,7 +27,7 @@ const Header = () => {
                             <button onClick={(e) => dispatch(toggleDarkMode())}><i className="fas fa-adjust"></i></button>
                         </li>
                         <li>
-                            <button onClick={e => dispatch(convertUnits())}><div className="header__unit-icon">℃</div></button>
+                            <button onClick={e => dispatch(convertUnits())}><div className="header__unit-icon">{isMetric ? '\xB0C' : '\xB0F'}</div></button>
                         </li>
                     </ul>
                 </nav>
