@@ -1,7 +1,7 @@
-export const converter = (min, shouldconvert = false) => {
-    if (shouldconvert) {
-        return `${Math.floor(min * 9 / 5 + 32)}\xB0F`
+export const converter = (min, max) => {
+    if (max === undefined) {
+        return `${Math.round(min * 9 / 5 + 32)}\xB0F`
     } else {
-        return `${min}\xB0C`
+        return `${Math.round(min * 9 / 5 + 32)}\xB0F - ${Math.round(max * 9 / 5 + 32)}\xB0F `
     }
 }

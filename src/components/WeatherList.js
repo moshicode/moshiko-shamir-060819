@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
 import { addFavorite, removeFavorite } from '../actions'
-// import { converter } from '../helpers/converter'
+import { converter } from '../helpers/converter'
 
 function WeatherList() {
 
@@ -10,7 +10,7 @@ function WeatherList() {
     const currentWeather = useSelector(state => state.weather.current)
     const location = useSelector(state => state.location)
     const favorites = useSelector(state => state.favoritesData)
-    // const isMetric = useSelector(state => state.isMetric)
+    const isMetric = useSelector(state => state.isMetric)
     const dispatch = useDispatch()
     const isDayTime = currentWeather.IsDayTime ? 'Day' : 'Night'
 
@@ -21,9 +21,7 @@ function WeatherList() {
                 <div className="weather-forecast__current">
                     <p className="weather-forecast__day">Today</p>
                     <p className="weather-forecast__text">{currentWeather.WeatherText}</p>
-                    {/* {isMetric ? converter(currentWeather.Temperature.Metric.Value) : converter(currentWeather.Temperature.Metric.Value)} */}
-
-                    <p className="weather-forecast__temp">{currentWeather.Temperature.Metric.Value}℃</p>
+                    <p className="weather-forecast__temp">{isMetric ? `${currentWeather.Temperature.Metric.Value}\xB0C` : converter(currentWeather.Temperature.Metric.Value)}</p>
                 </div>
                 {favorites.some(({ id }) => id === location.key) ?
                     <button className="weather-current__btn" onClick={() => dispatch(
@@ -41,9 +39,7 @@ function WeatherList() {
                     <div key={index} className="weather-forecast__item">
                         <p className="weather-forecast__day">{moment(forecast.Date).format('ddd')}</p>
                         <p className="weather-forecast__icon"><i className={`wi icon-accu${forecast[isDayTime].Icon}`}></i></p>
-
-                        {/* {isMetric ? converter(forecast.Temperature.Minimum.Value) : converter(forecast.Temperature.Minimum.Value, forecast.Temperature.Maximum.Value, true)} */}
-                        <p className="weather-forecast__temp">{forecast.Temperature.Minimum.Value}℃ - {forecast.Temperature.Maximum.Value}℃</p>
+                        <p className="weather-forecast__temp">{isMetric ? `${forecast.Temperature.Minimum.Value}\xB0C - ${forecast.Temperature.Maximum.Value}\xB0C` : converter(forecast.Temperature.Minimum.Value, forecast.Temperature.Maximum.Value)}</p>
                         <p className="weather__forecast__text">{forecast[isDayTime].IconPhrase}</p>
                     </div>
                 )}

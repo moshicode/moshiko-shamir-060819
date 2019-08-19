@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { removeFavorite } from '../actions'
 import axios from 'axios'
+import { converter } from '../helpers/converter';
 
 function Favorites() {
     const favorites = useSelector(state => state.favoritesData)
+    const isMetric = useSelector(state => state.isMetric)
     const dispatch = useDispatch()
 
     const [favs, setFav] = useState([]);
@@ -39,7 +41,7 @@ function Favorites() {
                     key={index}>
                     <p>{favorite.name}</p>
                     <p>{favs[favorite.id].WeatherText}</p>
-                    <p>{favs[favorite.id].Temperature.Metric.Value}℃</p>
+                    <p>{isMetric ? `${favs[favorite.id].Temperature.Metric.Value}\xB0C` : converter(favs[favorite.id].Temperature.Metric.Value)}</p>
                     <button
                         onClick={() => dispatch(removeFavorite(favorite.id))}>
                         Remove Favorite
