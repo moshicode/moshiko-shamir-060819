@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/moshicode/Accuweather-Weather-App/static/css/main.9b18dbf5.chunk.css",
+    "main.js": "/moshicode/Accuweather-Weather-App/static/js/main.e3b35111.chunk.js",
+    "main.js.map": "/moshicode/Accuweather-Weather-App/static/js/main.e3b35111.chunk.js.map",
+    "runtime~main.js": "/moshicode/Accuweather-Weather-App/static/js/runtime~main.42a2e2c0.js",
+    "runtime~main.js.map": "/moshicode/Accuweather-Weather-App/static/js/runtime~main.42a2e2c0.js.map",
+    "static/js/2.867d1ebf.chunk.js": "/moshicode/Accuweather-Weather-App/static/js/2.867d1ebf.chunk.js",
+    "static/js/2.867d1ebf.chunk.js.map": "/moshicode/Accuweather-Weather-App/static/js/2.867d1ebf.chunk.js.map",
+    "index.html": "/moshicode/Accuweather-Weather-App/index.html",
+    "precache-manifest.9a210c7e8da8923e7fb429c99216deb8.js": "/moshicode/Accuweather-Weather-App/precache-manifest.9a210c7e8da8923e7fb429c99216deb8.js",
+    "service-worker.js": "/moshicode/Accuweather-Weather-App/service-worker.js",
+    "static/css/main.9b18dbf5.chunk.css.map": "/moshicode/Accuweather-Weather-App/static/css/main.9b18dbf5.chunk.css.map"
+  }
+}
