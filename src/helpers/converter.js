@@ -1,7 +1,8 @@
 export const converter = (min, max) => {
+    // const formula = (num * 9 / 5 + 32).toFixed(2)
     if (max === undefined) {
-        return `${Math.round(min * 9 / 5 + 32)}\xB0F`
+        return `${(min * 9 / 5 + 32).toFixed(2)}\xB0F`
     } else {
-        return `${Math.round(min * 9 / 5 + 32)}\xB0F - ${Math.round(max * 9 / 5 + 32)}\xB0F `
+        return `${(min * 9 / 5 + 32).toFixed(2)}\xB0F - ${(max * 9 / 5 + 32).toFixed(2)}\xB0F `
     }
 }
