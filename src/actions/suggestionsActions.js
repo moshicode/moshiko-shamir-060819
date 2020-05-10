@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_KEY = 'gQ307OUWQ0rbqOqwiGr85Z3JDQBtEEII'
+const API_KEY = 'DVaSHCZ2oK98ZriCAWD9hnT7V0jxRO9g'
 const ROOT_URL = 'https://dataservice.accuweather.com'
 
 // Get array of locations suggestions with RAW DATA { cityName, key, country }
